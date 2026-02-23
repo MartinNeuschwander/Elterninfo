@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Elterninformation</title>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 <style>
 @page {
     size: A4;
@@ -124,18 +126,20 @@ textarea {
     margin-bottom: 4px;
 }
 
-/* Druck-Button */
-.print-btn {
-    display: block;
-    margin: 20px auto;
-    padding: 6px 16px;
+.button-bar {
+    text-align: center;
+    margin: 20px 0;
+}
+
+button {
+    padding: 6px 18px;
     font-size: 10.5pt;
+    margin: 0 8px;
     cursor: pointer;
 }
 
-/* Beim Drucken */
 @media print {
-    .print-btn {
+    .button-bar {
         display: none;
     }
     body {
@@ -151,6 +155,25 @@ textarea {
 function printForm() {
     window.print();
 }
+
+function downloadPDF() {
+    const element = document.querySelector(".page");
+
+    const name = document.getElementById("schueler").value || "Unbekannt";
+    const date = document.getElementById("datum").value || new Date().toISOString().slice(0,10);
+
+    const safeName = name.replace(/\s+/g, "_");
+
+    const opt = {
+        margin: 10,
+        filename: `Elterninformation_${safeName}_${date}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save();
+}
 </script>
 
 </head>
@@ -165,13 +188,13 @@ function printForm() {
 <table class="info-table">
 <tr>
     <td class="label">Name der/des Schüler*In:</td>
-    <td><input type="text"></td>
+    <td><input type="text" id="schueler"></td>
     <td class="label">Klasse:</td>
     <td><input type="text"></td>
 </tr>
 <tr>
     <td class="label">Ausgegeben am:</td>
-    <td><input type="date"></td>
+    <td><input type="date" id="datum"></td>
     <td class="label">Ausgegeben von:</td>
     <td><input type="text"></td>
 </tr>
@@ -247,8 +270,11 @@ function printForm() {
 
 </form>
 
-<button class="print-btn" onclick="printForm()">Drucken</button>
+</div>
 
+<div class="button-bar">
+    <button onclick="printForm()">Drucken</button>
+    <button onclick="downloadPDF()">PDF herunterladen</button>
 </div>
 
 </body>
