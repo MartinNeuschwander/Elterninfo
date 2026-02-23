@@ -1,1 +1,255 @@
-<!DOCTYPE html> <html lang="de"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Elterninformation Formular</title> <style> body { font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; margin: 30px 50px; color: #222; background: #fefefe; } h2 { border-bottom: 3px solid #444; padding-bottom: 8px; margin-bottom: 20px; font-weight: 700; color: #333; } table { width: 100%; border-collapse: collapse; margin-bottom: 1.2em; } td, th { border: 1px solid #444; padding: 8px 12px; vertical-align: top; } .header-table td { border: 1px solid #444; } .header-table input[type="text"], .header-table input[type="date"], textarea, input[type="text"].signature-field, input[type="text"].short-input { width: 100%; box-sizing: border-box; border: 1px solid #999; font-size: 1em; padding: 6px 8px; border-radius: 4px; transition: border-color 0.3s; } .header-table input[type="text"]:focus, .header-table input[type="date"]:focus, textarea:focus, input[type="text"].signature-field:focus, input[type="text"].short-input:focus { border-color: #0078d7; outline: none; } textarea { min-height: 70px; resize: vertical; font-family: inherit; } .consequence-table th { background-color: #d3d3d3; font-weight: 700; text-align: left; } .consequence-table td.checkbox-cell { width: 30px; text-align: center; } .consequence-table input[type="text"].short-input { width: 60px; } .signature-row td { border: none; padding-top: 50px; font-style: italic; font-size: 0.9em; } .signature-label { font-weight: normal; font-style: italic; text-align: center; margin-top: 6px; color: #555; } button.print-button { margin-top: 30px; padding: 12px 25px; font-size: 1.1em; cursor: pointer; background-color: #0078d7; color: white; border: none; border-radius: 6px; box-shadow: 0 3px 6px rgba(0,120,215,0.4); transition: background-color 0.3s; } button.print-button:hover { background-color: #005fa3; } p.bold-text { font-weight: 700; margin-top: 1em; } </style> </head> <body> <h2>Elterninformation</h2> <table class="header-table" role="presentation"> <tbody> <tr> <td>Name des Schülers:<br> <input type="text" name="schuelername" placeholder="Name eingeben" /> </td> <td>Klasse:<br> <input type="text" name="klasse" placeholder="Klasse eingeben" /> </td> </tr> <tr> <td>Ausgegeben am:<br> <input type="date" name="ausgegeben_am" /> </td> <td>Ausgegeben von:<br> <input type="text" name="ausgegeben_von" placeholder="Name Lehrkraft" /> </td> </tr> </tbody> </table> <p>Sehr geehrte Eltern, sehr geehrte Betreuer*innen,</p> <p>Ihr Kind hat heute folgenden groben Regelverstoß begangen:</p> <textarea name="regelverstoß" placeholder="Beschreibung hier eingeben..."></textarea> <p>Dieses Verhalten hat folgende Konsequenzen:</p> <table class="consequence-table" role="presentation"> <thead> <tr> <th style="width: 40px;">x</th> <th>Konsequenz</th> </tr> </thead> <tbody> <tr> <td class="checkbox-cell"><input type="checkbox" name="konsequenz1" /></td> <td>Erteilung des <input type="text" name="strafpunkt" class="short-input" /> Strafpunkts laut Maßnahmenkatalog</td> </tr> <tr> <td class="checkbox-cell"><input type="checkbox" name="konsequenz2" /></td> <td>Bearbeitung eines Bogens zur Verhaltensreflektion in der GTA-Stunde in Begleitung einer Lehrkraft</td> </tr> <tr> <td class="checkbox-cell"><input type="checkbox" name="konsequenz3" /></td> <td>Teilnahme an einer Streitschlichtung</td> </tr> <tr> <td class="checkbox-cell"><input type="checkbox" name="konsequenz4" /></td> <td>Nacharbeit des verpassten Unterrichtsstoffs (Die Lehrkraft behält sich vor, diese zu bewerten.)</td> </tr> <tr> <td class="checkbox-cell"><input type="checkbox" name="konsequenz5" /></td> <td>Unentschuldigte Fehlstunde</td> </tr> </tbody> </table> <p class="bold-text">Bitte klären und besprechen Sie diesen Vorfall und die Konsequenzen mit Ihrem Kind.</p> <table style="width: 100%; margin-top: 40px;" role="presentation"> <tbody> <tr class="signature-row"> <td> <input type="text" class="signature-field" name="lehrkraft_unterschrift" placeholder="Unterschrift ausstellende Lehrkraft" /> <div class="signature-label">(Unterschrift ausstellende Lehrkraft)</div> </td> <td> <input type="text" class="signature-field" name="eltern_unterschrift" placeholder="Unterschrift Eltern/Betreuer*innen" /> <div class="signature-label">(Unterschrift Eltern/Betreuer*innen)</div> </td> </tr> </tbody> </table> <button class="print-button" onclick="window.print()">Als PDF drucken</button> </body> </html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Elterninformation</title>
+
+<style>
+@page {
+    size: A4;
+    margin: 18mm;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10.5pt;
+    margin: 0;
+    background: #fff;
+}
+
+.page {
+    width: 174mm;
+    margin: 0 auto;
+    padding-top: 18mm;
+}
+
+h1 {
+    font-size: 13pt;
+    font-weight: bold;
+    border: 1px solid #000;
+    border-bottom: none;
+    padding: 6px;
+    margin: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-table td {
+    border: 1px solid #000;
+    padding: 4px;
+    vertical-align: middle;
+}
+
+.label {
+    width: 23%;
+    white-space: nowrap;
+}
+
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 10.5pt;
+    font-family: inherit;
+    background: transparent;
+}
+
+textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: inherit;
+    font-size: 10.5pt;
+    background: transparent;
+}
+
+.section {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    padding: 10px;
+}
+
+.textarea-line {
+    border-bottom: 1px solid #000;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+}
+
+.consequence-table {
+    border: 1px solid #000;
+    margin-top: 8px;
+}
+
+.consequence-table th,
+.consequence-table td {
+    border: 1px solid #000;
+    padding: 4px;
+    vertical-align: top;
+}
+
+.checkbox-col {
+    width: 28px;
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.signature-section {
+    border: 1px solid #000;
+    border-top: none;
+    padding: 12px 10px 35px 10px;
+}
+
+.signature-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+}
+
+.signature {
+    width: 45%;
+    text-align: center;
+}
+
+.signature-line {
+    border-bottom: 1px solid #000;
+    height: 35px;
+    margin-bottom: 4px;
+}
+
+/* Druck-Button */
+.print-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 6px 16px;
+    font-size: 10.5pt;
+    cursor: pointer;
+}
+
+/* Beim Drucken */
+@media print {
+    .print-btn {
+        display: none;
+    }
+    body {
+        margin: 0;
+    }
+    .page {
+        padding-top: 0;
+    }
+}
+</style>
+
+<script>
+function printForm() {
+    window.print();
+}
+</script>
+
+</head>
+<body>
+
+<div class="page">
+
+<h1>Elterninformation</h1>
+
+<form>
+
+<table class="info-table">
+<tr>
+    <td class="label">Name der/des Schüler*In:</td>
+    <td><input type="text"></td>
+    <td class="label">Klasse:</td>
+    <td><input type="text"></td>
+</tr>
+<tr>
+    <td class="label">Ausgegeben am:</td>
+    <td><input type="date"></td>
+    <td class="label">Ausgegeben von:</td>
+    <td><input type="text"></td>
+</tr>
+</table>
+
+<div class="section">
+    <p>Sehr geehrte Eltern, sehr geehrte Betreuer*Innen,</p>
+
+    <p>Ihre/Ihr Schüler*In hat heute folgenden groben Regelverstoß begangen:</p>
+    <div class="textarea-line">
+        <textarea rows="3"></textarea>
+    </div>
+
+    <p>Dieses Verhalten hat folgende Konsequenzen:</p>
+
+    <table class="consequence-table">
+        <tr>
+            <th class="checkbox-col">X</th>
+            <th>Konsequenz</th>
+        </tr>
+        <tr>
+            <td class="checkbox-col"><input type="checkbox"></td>
+            <td>
+                Erteilung des 
+                <input type="text" style="width:35px; border-bottom:1px solid #000;">
+                Strafpunkts laut Maßnahmenkatalog
+            </td>
+        </tr>
+        <tr>
+            <td class="checkbox-col"><input type="checkbox"></td>
+            <td>Bearbeitung eines Bogens zur Verhaltensreflexion in der GTA-Stunde in Begleitung einer Lehrkraft</td>
+        </tr>
+        <tr>
+            <td class="checkbox-col"><input type="checkbox"></td>
+            <td>Teilnahme an einer Streitschlichtung</td>
+        </tr>
+        <tr>
+            <td class="checkbox-col"><input type="checkbox"></td>
+            <td>Nacharbeit des verpassten Unterrichtsstoffs (Die Lehrkraft behält sich vor, diese zu bewerten.)</td>
+        </tr>
+        <tr>
+            <td class="checkbox-col"><input type="checkbox"></td>
+            <td>Unentschuldigte Fehlstunde</td>
+        </tr>
+    </table>
+
+    <p class="bold" style="margin-top:8px;">
+        Bitte klären und besprechen Sie diesen Vorfall und die Konsequenzen mit Ihrer/Ihrem Schüler*In.
+    </p>
+
+    <p>Mit freundlichen Grüßen</p>
+</div>
+
+<div class="signature-section">
+
+    <div style="text-align:right; font-weight:bold;">
+        Kenntnisnahme der Eltern/Betreuer*Innen:
+    </div>
+
+    <div class="signature-row">
+        <div class="signature">
+            <div class="signature-line"></div>
+            (Unterschrift ausstellende Lehrkraft)
+        </div>
+
+        <div class="signature">
+            <div class="signature-line"></div>
+            (Unterschrift Eltern/Betreuer*Innen)
+        </div>
+    </div>
+
+</div>
+
+</form>
+
+<button class="print-btn" onclick="printForm()">Drucken</button>
+
+</div>
+
+</body>
+</html>
