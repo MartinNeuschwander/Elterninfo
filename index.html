@@ -69,9 +69,11 @@ textarea {
 }
 
 .section {
+    border: 1px solid #000;
     border-left: 1px solid #000;
     border-right: 1px solid #000;
     padding: 10px;
+    margin-top: 10px;
 }
 
 .textarea-line {
@@ -113,21 +115,11 @@ textarea {
     font-weight: bold;
 }
 
-/* Signaturbereich */
-.signature-section {
-    border: 1px solid #000;
-    padding: 12px 10px 20px 10px;
-    margin-top: 20px;
-}
-
-.signature-text {
-    margin-bottom: 25px;
-    font-size: 10.5pt;
-}
-
+/* Signatur innerhalb der Section */
 .signature-row {
     display: flex;
     justify-content: space-between;
+    margin-top: 30px;
 }
 
 .signature {
@@ -206,9 +198,9 @@ function printForm() {
 
     <table class="consequence-table">
         <tr class="konsequenz-header">
-    <th class="checkbox-col">X</th>
-    <th>Konsequenz</th>
-</tr>
+            <th class="checkbox-col">X</th>
+            <th>Konsequenz</th>
+        </tr>
         <tr>
             <td class="checkbox-col"><input type="checkbox"></td>
             <td>
@@ -238,25 +230,21 @@ function printForm() {
     <p class="bold" style="margin-top:8px;">
         Bitte klären und besprechen Sie diesen Vorfall und die Konsequenzen mit Ihrem Kind.
     </p>
-</div>
 
-<!-- Signaturbereich -->
-<div class="signature-section">
-    <div class="signature-text">
-        Mit freundlichen Grüßen<br>
-        Kenntnisnahme der Eltern / Betreuer*In:
-    </div>
-
+    <!-- Unterschriften nebeneinander innerhalb des Section-Rahmens -->
     <div class="signature-row">
         <div class="signature">
+            Mit freundlichen Grüßen<br><br>
             <div class="signature-line"></div>
             (Unterschrift ausstellende Lehrkraft)
         </div>
         <div class="signature">
+            Kenntnisnahme der Eltern / Betreuer*In:<br><br>
             <div class="signature-line"></div>
             (Unterschrift Eltern / Betreuer*In)
         </div>
     </div>
+
 </div>
 
 </form>
