@@ -6,78 +6,100 @@
 <title>Elterninformation Formular</title>
 <style>
   body {
-    font-family: Arial, sans-serif;
-    margin: 20px 40px;
-    color: #000;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 30px 50px;
+    color: #222;
+    background: #fefefe;
   }
   h2 {
-    border-bottom: 2px solid black;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-    font-weight: bold;
+    border-bottom: 3px solid #444;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #333;
   }
   table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 1em;
+    margin-bottom: 1.2em;
   }
   td, th {
-    border: 1px solid black;
-    padding: 5px 8px;
+    border: 1px solid #444;
+    padding: 8px 12px;
     vertical-align: top;
   }
   .header-table td {
-    border: 1px solid black;
+    border: 1px solid #444;
   }
-  .header-table input {
+  .header-table input[type="text"],
+  .header-table input[type="date"],
+  textarea,
+  input[type="text"].signature-field,
+  input[type="text"].short-input {
     width: 100%;
     box-sizing: border-box;
-    border: none;
+    border: 1px solid #999;
     font-size: 1em;
-    padding: 3px 5px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+  .header-table input[type="text"]:focus,
+  .header-table input[type="date"]:focus,
+  textarea:focus,
+  input[type="text"].signature-field:focus,
+  input[type="text"].short-input:focus {
+    border-color: #0078d7;
+    outline: none;
   }
   textarea {
-    width: 100%;
-    min-height: 50px;
+    min-height: 70px;
     resize: vertical;
-    font-family: Arial, sans-serif;
-    font-size: 1em;
+    font-family: inherit;
   }
   .consequence-table th {
-    background-color: #ccc;
-    font-weight: bold;
+    background-color: #d3d3d3;
+    font-weight: 700;
     text-align: left;
   }
   .consequence-table td.checkbox-cell {
-    width: 25px;
+    width: 30px;
     text-align: center;
+  }
+  .consequence-table input[type="text"].short-input {
+    width: 60px;
   }
   .signature-row td {
     border: none;
-    padding-top: 40px;
+    padding-top: 50px;
     font-style: italic;
     font-size: 0.9em;
-  }
-  .signature-row td input {
-    width: 80%;
-    border: none;
-    border-bottom: 1px solid black;
-    font-style: normal;
   }
   .signature-label {
     font-weight: normal;
     font-style: italic;
     text-align: center;
-    margin-top: 4px;
+    margin-top: 6px;
+    color: #555;
   }
-  .print-button {
+  button.print-button {
     margin-top: 30px;
-    padding: 10px 18px;
+    padding: 12px 25px;
     font-size: 1.1em;
     cursor: pointer;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 3px 6px rgba(0,120,215,0.4);
+    transition: background-color 0.3s;
   }
-  .bold-text {
-    font-weight: bold;
+  button.print-button:hover {
+    background-color: #005fa3;
+  }
+  p.bold-text {
+    font-weight: 700;
+    margin-top: 1em;
   }
 </style>
 </head>
@@ -85,13 +107,14 @@
 
 <h2>Elterninformation</h2>
 
-<table class="header-table">
+<table class="header-table" role="presentation">
+  <tbody>
   <tr>
-    <td>Name des Schülers:<br>
-      <input type="text" name="schuelername" />
+    <td>Name des/der Schüler*in:<br>
+      <input type="text" name="schuelername" placeholder="Name eingeben" />
     </td>
     <td>Klasse:<br>
-      <input type="text" name="klasse" />
+      <input type="text" name="klasse" placeholder="Klasse eingeben" />
     </td>
   </tr>
   <tr>
@@ -99,29 +122,30 @@
       <input type="date" name="ausgegeben_am" />
     </td>
     <td>Ausgegeben von:<br>
-      <input type="text" name="ausgegeben_von" />
+      <input type="text" name="ausgegeben_von" placeholder="Name Lehrkraft" />
     </td>
   </tr>
+  </tbody>
 </table>
 
 <p>Sehr geehrte Eltern, sehr geehrte Betreuer*innen,</p>
 
 <p>Ihr Kind hat heute folgenden groben Regelverstoß begangen:</p>
-<textarea name="regelverstoß" placeholder="Hier Text eingeben..."></textarea>
+<textarea name="regelverstoß" placeholder="Beschreibung hier eingeben..."></textarea>
 
 <p>Dieses Verhalten hat folgende Konsequenzen:</p>
 
-<table class="consequence-table">
+<table class="consequence-table" role="presentation">
   <thead>
     <tr>
-      <th style="width: 30px;">x</th>
+      <th style="width: 40px;">x</th>
       <th>Konsequenz</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td class="checkbox-cell"><input type="checkbox" name="konsequenz1" /></td>
-      <td>Erteilung des <input type="text" name="strafpunkt" style="width: 80px;" /> Strafpunkts laut Maßnahmenkatalog</td>
+      <td>Erteilung des <input type="text" name="strafpunkt" class="short-input" /> Strafpunkts laut Maßnahmenkatalog</td>
     </tr>
     <tr>
       <td class="checkbox-cell"><input type="checkbox" name="konsequenz2" /></td>
@@ -144,17 +168,19 @@
 
 <p class="bold-text">Bitte klären und besprechen Sie diesen Vorfall und die Konsequenzen mit Ihrem Kind.</p>
 
-<table style="width: 100%; margin-top: 30px;">
+<table style="width: 100%; margin-top: 40px;" role="presentation">
+  <tbody>
   <tr class="signature-row">
     <td>
-      <input type="text" name="lehrkraft_unterschrift" />
+      <input type="text" class="signature-field" name="lehrkraft_unterschrift" placeholder="Unterschrift ausstellende Lehrkraft" />
       <div class="signature-label">(Unterschrift ausstellende Lehrkraft)</div>
     </td>
     <td>
-      <input type="text" name="eltern_unterschrift" />
+      <input type="text" class="signature-field" name="eltern_unterschrift" placeholder="Unterschrift Eltern/Betreuer*innen" />
       <div class="signature-label">(Unterschrift Eltern/Betreuer*innen)</div>
     </td>
   </tr>
+  </tbody>
 </table>
 
 <button class="print-button" onclick="window.print()">Als PDF drucken</button>
