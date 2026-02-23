@@ -111,6 +111,13 @@ textarea {
     font-weight: bold;
 }
 
+.signature-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 25px;
+}
+
 .signature-section {
     border: 1px solid #000;
     border-top: none;
@@ -238,9 +245,15 @@ function printForm() {
 
 <div class="signature-section">
 
-    <div style="text-align:right; font-weight:bold;">
+    <div class="signature-header-row">
+    <div class="left-header">
+        Mit freundlichen Grüßen
+    </div>
+    <div class="right-header">
         Kenntnisnahme der Eltern / Betreuer*In:
     </div>
+</div>
+
 
     <div class="signature-row">
         <div class="signature">
