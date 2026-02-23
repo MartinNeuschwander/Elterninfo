@@ -79,7 +79,13 @@ textarea {
     margin-bottom: 10px;
     padding-bottom: 4px;
 }
+.konsequenz-header th {
+    background-color: #e6e6e6;  /* hellgrau */
+}
 
+.konsequenz-header th:not(.checkbox-col) {
+    text-align: left;
+}
 .consequence-table {
     border: 1px solid #000;
     margin-top: 8px;
@@ -192,10 +198,10 @@ function printForm() {
     <p>Dieses Verhalten hat folgende Konsequenzen:</p>
 
     <table class="consequence-table">
-        <tr background-color: #e6e6e6;>
-            <th class="checkbox-col">X</th>
-            <th>Konsequenz</th>
-        </tr>
+        <tr class="konsequenz-header">
+    <th class="checkbox-col">X</th>
+    <th>Konsequenz</th>
+</tr>
         <tr>
             <td class="checkbox-col"><input type="checkbox"></td>
             <td>
