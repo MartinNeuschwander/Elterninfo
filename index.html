@@ -23,6 +23,35 @@ body {
     padding-top: 18mm;
 }
 
+/* Briefkopf */
+.letterhead {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #000;
+    border-bottom: none;
+    padding: 8px;
+    margin: 0;
+}
+
+.letterhead img {
+    height: 18mm;
+    width: auto;
+}
+
+.letterhead-text {
+    flex: 1;
+    text-align: center;
+    font-size: 9.5pt;
+    line-height: 1.4;
+}
+
+.letterhead-text .school-name {
+    font-size: 12pt;
+    font-weight: bold;
+}
+/* */
+
 h1 {
     font-size: 13pt;
     font-weight: bold;
@@ -164,7 +193,15 @@ function printForm() {
 
 </head>
 <body>
-
+div class="letterhead">
+    <!-- Logo: Dateiname anpassen oder die Zeile löschen -->
+    <img src="logo.png" alt="Schullogo">
+    <div class="letterhead-text">
+        <div class="school-name">Schule mit dem Förderschwerpunkt Lernen Borna</div>
+        Luckaer Str. 14a · 04552 Borna<br>
+        Tel.:  0 34 33 / 80 31 63 · E-Mail: sekretariat@fsl-borna.de
+    </div>
+</div>
 <div class="page">
 
 <h1>Elterninformation</h1>
